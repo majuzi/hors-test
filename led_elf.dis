@@ -1,0 +1,80 @@
+
+led.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	e59f00c4 	ldr	r0, [pc, #196]	; cc <dely_loop+0x10>
+   4:	e59f10c4 	ldr	r1, [pc, #196]	; d0 <dely_loop+0x14>
+   8:	e5810000 	str	r0, [r1]
+   c:	e59f40c0 	ldr	r4, [pc, #192]	; d4 <dely_loop+0x18>
+  10:	e59f50c0 	ldr	r5, [pc, #192]	; d8 <dely_loop+0x1c>
+  14:	e5854000 	str	r4, [r5]
+  18:	e3a040ff 	mov	r4, #255	; 0xff
+  1c:	e59f50b8 	ldr	r5, [pc, #184]	; dc <dely_loop+0x20>
+  20:	e5854000 	str	r4, [r5]
+
+00000024 <flash>:
+  24:	e3a04006 	mov	r4, #6
+  28:	e59f50ac 	ldr	r5, [pc, #172]	; dc <dely_loop+0x20>
+  2c:	e5854000 	str	r4, [r5]
+  30:	e3a00030 	mov	r0, #48	; 0x30
+  34:	e59f10a4 	ldr	r1, [pc, #164]	; e0 <dely_loop+0x24>
+  38:	e5810000 	str	r0, [r1]
+  3c:	eb00001c 	bl	b4 <dely>
+  40:	e3a000ff 	mov	r0, #255	; 0xff
+  44:	e59f1094 	ldr	r1, [pc, #148]	; e0 <dely_loop+0x24>
+  48:	e5810000 	str	r0, [r1]
+  4c:	eb000018 	bl	b4 <dely>
+  50:	e3a00028 	mov	r0, #40	; 0x28
+  54:	e59f1084 	ldr	r1, [pc, #132]	; e0 <dely_loop+0x24>
+  58:	e5810000 	str	r0, [r1]
+  5c:	eb000014 	bl	b4 <dely>
+  60:	e3a000ff 	mov	r0, #255	; 0xff
+  64:	e59f1074 	ldr	r1, [pc, #116]	; e0 <dely_loop+0x24>
+  68:	e5810000 	str	r0, [r1]
+  6c:	eb000010 	bl	b4 <dely>
+  70:	e3a00018 	mov	r0, #24
+  74:	e59f1064 	ldr	r1, [pc, #100]	; e0 <dely_loop+0x24>
+  78:	e5810000 	str	r0, [r1]
+  7c:	eb00000c 	bl	b4 <dely>
+  80:	e3a000ff 	mov	r0, #255	; 0xff
+  84:	e59f1054 	ldr	r1, [pc, #84]	; e0 <dely_loop+0x24>
+  88:	e5810000 	str	r0, [r1]
+  8c:	eb000008 	bl	b4 <dely>
+  90:	e3a04000 	mov	r4, #0
+  94:	e59f5040 	ldr	r5, [pc, #64]	; dc <dely_loop+0x20>
+  98:	e5854000 	str	r4, [r5]
+  9c:	eb000004 	bl	b4 <dely>
+  a0:	e3a04002 	mov	r4, #2
+  a4:	e59f5030 	ldr	r5, [pc, #48]	; dc <dely_loop+0x20>
+  a8:	e5854000 	str	r4, [r5]
+  ac:	eb000000 	bl	b4 <dely>
+  b0:	eaffffdb 	b	24 <flash>
+
+000000b4 <dely>:
+  b4:	e59f3028 	ldr	r3, [pc, #40]	; e4 <dely_loop+0x28>
+  b8:	e3a04000 	mov	r4, #0
+
+000000bc <dely_loop>:
+  bc:	e2433001 	sub	r3, r3, #1
+  c0:	e1530004 	cmp	r3, r4
+  c4:	1afffffc 	bne	bc <dely_loop>
+  c8:	e1a0f00e 	mov	pc, lr
+  cc:	11111111 	tstne	r1, r1, lsl r1
+  d0:	e0200240 	eor	r0, r0, r0, asr #4
+  d4:	00001111 	andeq	r1, r0, r1, lsl r1
+  d8:	e02000a0 	eor	r0, r0, r0, lsr #1
+  dc:	e02000a4 	eor	r0, r0, r4, lsr #1
+  e0:	e0200244 	eor	r0, r0, r4, asr #4
+  e4:	0076adf1 	ldrshteq	sl, [r6], #-209	; 0xffffff2f
+
+Disassembly of section .ARM.attributes:
+
+00000000 <.ARM.attributes>:
+   0:	00001341 	andeq	r1, r0, r1, asr #6
+   4:	61656100 	cmnvs	r5, r0, lsl #2
+   8:	01006962 	tsteq	r0, r2, ror #18
+   c:	00000009 	andeq	r0, r0, r9
+  10:	01080106 	tsteq	r8, r6, lsl #2
